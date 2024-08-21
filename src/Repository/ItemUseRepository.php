@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\ItemTypeMouvement;
+use App\Entity\ItemUse;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<ItemTypeMouvement>
+ * @extends ServiceEntityRepository<ItemUse>
  *
- * @method ItemTypeMouvement|null find($id, $lockMode = null, $lockVersion = null)
- * @method ItemTypeMouvement|null findOneBy(array $criteria, array $orderBy = null)
- * @method ItemTypeMouvement[]    findAll()
- * @method ItemTypeMouvement[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method ItemUse|null find($id, $lockMode = null, $lockVersion = null)
+ * @method ItemUse|null findOneBy(array $criteria, array $orderBy = null)
+ * @method ItemUse[]    findAll()
+ * @method ItemUse[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ItemTypeMouvementRepository extends ServiceEntityRepository
+class ItemUseRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, ItemTypeMouvement::class);
+        parent::__construct($registry, ItemUse::class);
     }
 
-    public function add(ItemTypeMouvement $entity, bool $flush = false): void
+    public function add(ItemUse $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class ItemTypeMouvementRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(ItemTypeMouvement $entity, bool $flush = false): void
+    public function remove(ItemUse $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class ItemTypeMouvementRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return ItemTypeMouvement[] Returns an array of ItemTypeMouvement objects
+//     * @return ItemUse[] Returns an array of ItemUse objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class ItemTypeMouvementRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?ItemTypeMouvement
+//    public function findOneBySomeField($value): ?ItemUse
 //    {
 //        return $this->createQueryBuilder('i')
 //            ->andWhere('i.exampleField = :val')
