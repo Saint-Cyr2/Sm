@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SiteRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -26,6 +28,16 @@ class Site
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
+
+    /**
+     * @ORM\OneToMany(targetEntity=ItemUse::class, mappedBy="site")
+     */
+    private $itemUses;
+
+    public function __construct()
+    {
+        $this->itemUses = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -52,6 +64,36 @@ class Site
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ItemUse>
+     */
+    public function getItemUses(): Collection
+    {
+        return $this->itemUses;
+    }
+
+    public function addItemUse(ItemUse $itemUse): self
+    {
+        if (!$this->itemUses->contains($itemUse)) {
+            $this->itemUses[] = $itemUse;
+            $itemUse->setSite($this);
+        }
+
+        return $this;
+    }
+
+    public function removeItemUse(ItemUse $itemUse): self
+    {
+        if ($this->itemUses->removeElement($itemUse)) {
+            // set the owning side to null (unless already changed)
+            if ($itemUse->getSite() === $this) {
+                $itemUse->setSite(null);
+            }
+        }
 
         return $this;
     }

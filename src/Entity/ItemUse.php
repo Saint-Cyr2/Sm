@@ -32,6 +32,11 @@ class ItemUse
      */
     private $createdAt;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Site::class, inversedBy="itemUses")
+     */
+    private $site;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +74,18 @@ class ItemUse
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getSite(): ?Site
+    {
+        return $this->site;
+    }
+
+    public function setSite(?Site $site): self
+    {
+        $this->site = $site;
 
         return $this;
     }

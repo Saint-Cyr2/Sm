@@ -32,6 +32,16 @@ class ItemTypeQuantity
      */
     private $updatedAt;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=ItemType::class, inversedBy="itemTypeQuantities")
+     */
+    private $itemType;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=WareHouse::class, inversedBy="itemTypeQuantities")
+     */
+    private $wareHouse;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +79,30 @@ class ItemTypeQuantity
     public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getItemType(): ?ItemType
+    {
+        return $this->itemType;
+    }
+
+    public function setItemType(?ItemType $itemType): self
+    {
+        $this->itemType = $itemType;
+
+        return $this;
+    }
+
+    public function getWareHouse(): ?WareHouse
+    {
+        return $this->wareHouse;
+    }
+
+    public function setWareHouse(?WareHouse $wareHouse): self
+    {
+        $this->wareHouse = $wareHouse;
 
         return $this;
     }
